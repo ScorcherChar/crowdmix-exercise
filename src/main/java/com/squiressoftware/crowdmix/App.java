@@ -1,11 +1,9 @@
 package com.squiressoftware.crowdmix;
 
 import com.google.inject.Guice;
-import com.google.inject.Inject;
 import com.google.inject.Injector;
+import com.squiressoftware.crowdmix.commands.CommandFactory;
 import com.squiressoftware.crowdmix.time.Clock;
-import com.squiressoftware.crowdmix.time.ClockImpl;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,6 +22,8 @@ public class App {
     }
 
     public static void runCommand(String inputText, PrintStream output, Clock clock) {
-        throw new NotImplementedException();
+        CommandFactory commandFactory = injector.getInstance(CommandFactory.class);
+        Runnable command = commandFactory.CreateCommmand(inputText, output, clock);
+        command.run();
     }
 }
