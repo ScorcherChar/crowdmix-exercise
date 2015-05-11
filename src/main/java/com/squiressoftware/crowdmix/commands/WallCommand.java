@@ -25,6 +25,6 @@ public class WallCommand implements Runnable{
         aggrigatedPosts.addAll(user.getPosts());
         user.getFollowedUsers().stream().forEach(followedUser -> aggrigatedPosts.addAll(followedUser.getPosts()));
         aggrigatedPosts.sort((Post post1, Post post2) -> post1.getPostedTime().compareTo(post2.getPostedTime()));
-        aggrigatedPosts.stream().forEach(post -> output.println(post.print(now)));
+        aggrigatedPosts.stream().forEach(post -> output.println(post.printWithName(now)));
     }
 }

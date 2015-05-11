@@ -28,7 +28,7 @@ public class CommandFactoryImpl implements CommandFactory {
             String username = inputText.split(POST_KEYWORD)[0].trim();
             String message = inputText.split(POST_KEYWORD)[1].trim();
             User user = userRepository.getOrCreateUser(username);
-            return new PostCommand(user, new Post(message, clock.getNow()));
+            return new PostCommand(user, new Post(user, message, clock.getNow()));
         } else if (inputText.contains(FOLLOW_KEYWORD)) {
             String followerUsername = inputText.split(FOLLOW_KEYWORD)[0].trim();
             String followedUsername = inputText.split(FOLLOW_KEYWORD)[1].trim();

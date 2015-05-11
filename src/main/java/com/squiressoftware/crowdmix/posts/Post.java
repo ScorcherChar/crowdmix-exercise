@@ -1,5 +1,6 @@
 package com.squiressoftware.crowdmix.posts;
 
+import com.squiressoftware.crowdmix.users.User;
 import org.joda.time.DateTime;
 import org.joda.time.Period;
 import org.joda.time.format.PeriodFormatter;
@@ -8,10 +9,12 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Post {
 
+    private User user;
     private String message;
     private DateTime postedTime;
 
-    public Post(String message, DateTime postedTime) {
+    public Post(User user, String message, DateTime postedTime) {
+        this.user = user;
         this.message = message;
         this.postedTime = postedTime;
     }
@@ -43,6 +46,10 @@ public class Post {
                 .toFormatter();
 
         return String.format("%s (%s)", getMessage(), formatter.print(period));
+    }
+
+    public String printWithName(DateTime now){
+        return String.format("%s - %s",user.getName(), print(now));
     }
 
     public DateTime getPostedTime() {

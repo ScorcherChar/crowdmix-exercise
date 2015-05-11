@@ -39,6 +39,11 @@ public class AppTests {
     final String EXPECTED_OUTPUT_BOB2 = "Good game though. (1 minutes ago)";
     final String EXPECTED_OUTPUT_CHARLIE = "I'm in New York today! Anyone want to have a coffee? (15 seconds ago)";
 
+    final String EXPECTED_WALL_OUTPUT_ALICE = "Alice - I love the weather today (5 minutes ago)";
+    final String EXPECTED_WALL_OUTPUT_BOB1 = "Bob - Damn! We lost! (2 minutes ago)";
+    final String EXPECTED_WALL_OUTPUT_BOB2 = "Bob - Good game though. (1 minutes ago)";
+    final String EXPECTED_WALL_OUTPUT_CHARLIE = "Charlie - I'm in New York today! Anyone want to have a coffee? (15 seconds ago)";
+
     final String CHARLIE_FOLLOW_ALICE = "Charlie follows Alice";
     final String CHARLIE_FOLLOW_BOB = "Charlie follows Bob ";
 
@@ -122,8 +127,8 @@ public class AppTests {
         charlieWall();
 
         inOrder(textOutput);
-        verify(textOutput, times(1)).println(EXPECTED_OUTPUT_CHARLIE);
-        verify(textOutput, times(1)).println(EXPECTED_OUTPUT_ALICE);
+        verify(textOutput, times(1)).println(EXPECTED_WALL_OUTPUT_CHARLIE);
+        verify(textOutput, times(1)).println(EXPECTED_WALL_OUTPUT_ALICE);
     }
 
     @Test
@@ -136,10 +141,10 @@ public class AppTests {
         charlieWall();
 
         inOrder(textOutput);
-        verify(textOutput, times(1)).println(EXPECTED_OUTPUT_CHARLIE);
-        verify(textOutput, times(1)).println(EXPECTED_OUTPUT_ALICE);
-        verify(textOutput, never()).println(EXPECTED_OUTPUT_BOB2);
-        verify(textOutput, never()).println(EXPECTED_OUTPUT_BOB1);
+        verify(textOutput, times(1)).println(EXPECTED_WALL_OUTPUT_CHARLIE);
+        verify(textOutput, times(1)).println(EXPECTED_WALL_OUTPUT_ALICE);
+        verify(textOutput, never()).println(EXPECTED_WALL_OUTPUT_BOB2);
+        verify(textOutput, never()).println(EXPECTED_WALL_OUTPUT_BOB1);
     }
 
     @Test
@@ -153,10 +158,10 @@ public class AppTests {
         charlieWall();
 
         inOrder(textOutput);
-        verify(textOutput, times(1)).println(EXPECTED_OUTPUT_CHARLIE);
-        verify(textOutput, times(1)).println(EXPECTED_OUTPUT_BOB2);
-        verify(textOutput, times(1)).println(EXPECTED_OUTPUT_BOB1);
-        verify(textOutput, times(1)).println(EXPECTED_OUTPUT_ALICE);
+        verify(textOutput, times(1)).println(EXPECTED_WALL_OUTPUT_CHARLIE);
+        verify(textOutput, times(1)).println(EXPECTED_WALL_OUTPUT_BOB2);
+        verify(textOutput, times(1)).println(EXPECTED_WALL_OUTPUT_BOB1);
+        verify(textOutput, times(1)).println(EXPECTED_WALL_OUTPUT_ALICE);
     }
 
     private void charlieFollowsBob() {
