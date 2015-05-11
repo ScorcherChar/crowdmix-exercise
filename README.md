@@ -1,5 +1,16 @@
 # crowdmix-exercise
 
+Prerequisites
+
+*Maven
+*Java 8
+
+Run Application
+
+From the source directory run; mvn clean package
+navigate to target directory
+run; java -jar crowdmix-exercise-1.0-SNAPSHOT-jar-with-dependencies.jar
+
 Exercise
 
 Implement a console-based social networking application (similar to Twitter) satisfying the scenarios below.
