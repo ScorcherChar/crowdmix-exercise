@@ -7,6 +7,7 @@ import java.util.Optional;
 public class InMemoryUserRepository  implements UserRepository{
 
     private List<User> users = new ArrayList<>();
+    
     @Override
     public User getOrCreateUser(String name) {
         Optional<User> existingUser = getUser(name);

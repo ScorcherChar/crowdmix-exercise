@@ -1,14 +1,14 @@
 import com.squiressoftware.crowdmix.App;
 import com.squiressoftware.crowdmix.time.Clock;
+import com.squiressoftware.crowdmix.users.InMemoryUserRepository;
+import com.squiressoftware.crowdmix.users.UserRepository;
 import org.joda.time.DateTime;
-import org.joda.time.ReadablePeriod;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 
 import java.io.PrintStream;
@@ -21,9 +21,10 @@ public class AppTests {
 
     @Mock
     PrintStream textOutput;
-
     @Mock
     Clock clock;
+
+    UserRepository userRepository;
 
     final String POST_COMMAND_ALICE = "Alice -> I love the weather today";
     final String POST_COMMAND_BOB1 = "Bob -> Damn! We lost!";
@@ -44,6 +45,11 @@ public class AppTests {
     final String CHARLIE_WALL = "Charlie wall";
 
     DateTime now = new DateTime();
+
+    @Before
+    public void setup() {
+        userRepository = new InMemoryUserRepository();
+    }
 
     @Test
     public void givenAlicePublishesAMessage_whenFeedIsReadFiveMinLater_thenCorrectMessageReturned() {
@@ -155,45 +161,45 @@ public class AppTests {
 
     private void charlieFollowsBob() {
         when(clock.getNow()).thenReturn(now);
-        App.runCommand(CHARLIE_FOLLOW_BOB, textOutput, clock);
+        App.run(CHARLIE_FOLLOW_BOB, textOutput, clock, userRepository);
     }
 
 
     private void postAlice() {
         when(clock.getNow()).thenReturn(now.minusMinutes(5));
-        App.runCommand(POST_COMMAND_ALICE, textOutput, clock);
+        App.run(POST_COMMAND_ALICE, textOutput, clock, userRepository);
     }
 
     private void postBob() {
         when(clock.getNow()).thenReturn(now.minusMinutes(2));
-        App.runCommand(POST_COMMAND_BOB1, textOutput, clock);
+        App.run(POST_COMMAND_BOB1, textOutput, clock, userRepository);
         when(clock.getNow()).thenReturn(now.minusMinutes(1));
-        App.runCommand(POST_COMMAND_BOB2, textOutput, clock);
+        App.run(POST_COMMAND_BOB2, textOutput, clock, userRepository);
     }
 
     private void charlieFollowAlice() {
         when(clock.getNow()).thenReturn(now);
-        App.runCommand(CHARLIE_FOLLOW_ALICE, textOutput, clock);
+        App.run(CHARLIE_FOLLOW_ALICE, textOutput, clock, userRepository);
     }
 
 
     private void charlieWall() {
         when(clock.getNow()).thenReturn(now);
-        App.runCommand(CHARLIE_WALL, textOutput, clock);
+        App.run(CHARLIE_WALL, textOutput, clock, userRepository);
     }
 
     private void postCharlie() {
         when(clock.getNow()).thenReturn(now.minusSeconds(15));
-        App.runCommand(POST_COMMAND_CHARLIE, textOutput, clock);
+        App.run(POST_COMMAND_CHARLIE, textOutput, clock, userRepository);
     }
 
     private void readAlice() {
         when(clock.getNow()).thenReturn(now);
-        App.runCommand(READ_COMMAND_ALICE, textOutput, clock);
+        App.run(READ_COMMAND_ALICE, textOutput, clock, userRepository);
     }
 
     private void readBob() {
         when(clock.getNow()).thenReturn(now);
-        App.runCommand(READ_COMMAND_BOB, textOutput, clock);
+        App.run(READ_COMMAND_BOB, textOutput, clock, userRepository);
     }
 }
