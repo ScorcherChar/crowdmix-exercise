@@ -36,7 +36,7 @@ public class AppTests {
     final String EXPECTED_OUTPUT_ALICE = "I love the weather today (5 minutes ago)";
     final String EXPECTED_OUTPUT_BOB1 = "Damn! We lost! (2 minutes ago)";
     final String EXPECTED_OUTPUT_BOB2 = "Good game though. (1 minutes ago)";
-    final String EXPECTED_OUTPUT_CHARLIE = " I'm in New York today! Anyone want to have a coffee? (15 seconds ago)";
+    final String EXPECTED_OUTPUT_CHARLIE = "I'm in New York today! Anyone want to have a coffee? (15 seconds ago)";
 
     final String CHARLIE_FOLLOW_ALICE = "Charlie follows Alice";
     final String CHARLIE_FOLLOW_BOB = "Charlie follows Bob ";
