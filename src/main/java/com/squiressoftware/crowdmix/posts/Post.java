@@ -23,14 +23,6 @@ public class Post {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public void setPostedTime(DateTime postedTime) {
-        this.postedTime = postedTime;
-    }
-
     public String print(DateTime now) {
         Period period = new Period(getPostedTime(), now);
 
